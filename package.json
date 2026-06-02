@@ -1,0 +1,41 @@
+{
+  "name": "oss-maintainer-kit",
+  "version": "0.1.0",
+  "description": "Maintainer automation for issue triage, pull request review, and release notes.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "oss-maintainer": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "action.yml"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "check": "npm run lint && npm test"
+  },
+  "keywords": [
+    "open-source",
+    "maintainer",
+    "triage",
+    "pull-request",
+    "release-notes",
+    "openai"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "openai": "^6.41.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.8"
+  }
+}
