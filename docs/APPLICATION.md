@@ -8,6 +8,10 @@ Starting a new project now is allowed if you are the owner and maintainer, but i
 
 Best next step: publish this repository publicly, tag `v0.1.0`, add a short demo, invite real users to try it, and apply only with accurate current metrics.
 
+Published repository: https://github.com/morning-verlu/oss-maintainer-kit
+
+Initial release: https://github.com/morning-verlu/oss-maintainer-kit/releases/tag/v0.1.0
+
 ## Suggested Form Answers
 
 ### Role
