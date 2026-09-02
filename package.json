@@ -1,9 +1,23 @@
 {
   "name": "oss-maintainer-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Maintainer automation for issue triage, pull request review, and release notes.",
+  "private": true,
   "type": "module",
   "license": "Apache-2.0",
+  "author": {
+    "name": "Morning Verlu",
+    "email": "wurslu@gmail.com",
+    "url": "https://github.com/morning-verlu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morning-verlu/oss-maintainer-kit.git"
+  },
+  "homepage": "https://github.com/morning-verlu/oss-maintainer-kit#readme",
+  "bugs": {
+    "url": "https://github.com/morning-verlu/oss-maintainer-kit/issues"
+  },
   "bin": {
     "oss-maintainer": "./dist/cli.js"
   },

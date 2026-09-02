@@ -3,7 +3,7 @@ description: Issue triage, pull request review, and release notes for open-sourc
 
 inputs:
   command:
-    description: Command to run: triage, review, or release-notes.
+    description: "Command to run: triage, review, or release-notes."
     required: true
     default: review
   file:
