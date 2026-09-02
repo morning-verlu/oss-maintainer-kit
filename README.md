@@ -10,6 +10,8 @@ The tool uses the OpenAI Responses API when `OPENAI_API_KEY` is available. Witho
 
 ## Install
 
+This project is not published to npm. Build it from source:
+
 ```bash
 npm install
 npm run build
@@ -21,39 +23,41 @@ For local development:
 npm run check
 ```
 
+All examples below use the built entry point directly.
+
 ## CLI
 
 Triage an issue:
 
 ```bash
-oss-maintainer triage --issue issue.md
+node dist/cli.js triage --issue issue.md
 ```
 
 Review a pull request diff:
 
 ```bash
 gh pr diff 123 > pr.patch
-oss-maintainer review --diff pr.patch
+node dist/cli.js review --diff pr.patch
 ```
 
 Draft release notes:
 
 ```bash
 git log --oneline v0.1.0..HEAD > commits.txt
-oss-maintainer release-notes --commits commits.txt
+node dist/cli.js release-notes --commits commits.txt
 ```
 
 Use a stronger or cheaper model:
 
 ```bash
-OPENAI_API_KEY=sk-... oss-maintainer review --diff pr.patch --model gpt-5.5
-OPENAI_API_KEY=sk-... oss-maintainer triage --issue issue.md --model gpt-5.4-nano
+OPENAI_API_KEY=... node dist/cli.js review --diff pr.patch --model gpt-5.5
+OPENAI_API_KEY=... node dist/cli.js triage --issue issue.md --model gpt-5.4-nano
 ```
 
 Run fully offline:
 
 ```bash
-oss-maintainer review --diff pr.patch --offline
+node dist/cli.js review --diff pr.patch --offline
 ```
 
 Try the included examples:
@@ -66,7 +70,7 @@ node dist/cli.js release-notes --commits examples/commits.txt --offline
 
 ## GitHub Action
 
-After publishing this repository, other projects can call the action:
+Projects can call the versioned GitHub Action directly from this repository:
 
 ```yaml
 name: Maintainer AI Review
@@ -81,12 +85,12 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: gh pr diff "$PR_NUMBER" > pr.patch
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-      - uses: OWNER/oss-maintainer-kit@v0.1.0
+      - uses: morning-verlu/oss-maintainer-kit@v0.1.1
         with:
           command: review
           file: pr.patch

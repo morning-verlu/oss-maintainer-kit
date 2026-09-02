@@ -1,26 +1,13 @@
 # GitHub CI Workflow
 
-The repository is ready for this CI workflow, but pushing files under `.github/workflows/` requires the GitHub token to include the `workflow` scope.
+The workflow in `.github/workflows/ci.yml` runs for pull requests and pushes to
+`main`. It validates the project on Node.js 22 and 24 by running:
 
-After refreshing GitHub CLI credentials with `workflow` scope, add this file at `.github/workflows/ci.yml`:
+- `npm ci`
+- type checks and the six-unit-test suite through `npm run check`
+- `npm run build`
+- all three CLI commands against the offline examples
 
-```yaml
-name: CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: npm
-      - run: npm ci
-      - run: npm run check
-```
+A separate job invokes the checked-out repository as a local composite action in
+offline mode. This catches regressions in `action.yml` without an API key or a
+published tag.
